@@ -1,8 +1,6 @@
 package com.lifeofcoding.cacheutilslibrary_sample;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +9,9 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.reflect.TypeToken;
 import com.lifeofcoding.cacheutlislibrary.CacheUtils;
 
@@ -49,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
     }
     private static List<MyClass> getCacheFileContentListObject() {
         List<MyClass> listObject = new ArrayList<>();
-        listObject.add(MyClass.SAMPLE_MYCLASS_1);
-        listObject.add(MyClass.SAMPLE_MYCLASS_2);
-        listObject.add(MyClass.SAMPLE_MYCLASS_3);
+        listObject.add(MyClass.Companion.getSAMPLE_MYCLASS_1());
+        listObject.add(MyClass.Companion.getSAMPLE_MYCLASS_2());
+        listObject.add(MyClass.Companion.getSAMPLE_MYCLASS_3());
         return listObject;
     }
 
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(rootLayout, "Write a List<Map<String, T>> into cache file", Snackbar.LENGTH_SHORT).show();
 
             } else if (radioCheckId == R.id.object) {
-                CacheUtils.writeObjectFile(CACHE_FILE_OBJECT, MyClass.SAMPLE_MYCLASS_1);
+                CacheUtils.writeObjectFile(CACHE_FILE_OBJECT, MyClass.Companion.getSAMPLE_MYCLASS_1());
                 Snackbar.make(rootLayout, "Write a MyClass into cache file", Snackbar.LENGTH_SHORT).show();
 
             } else if (radioCheckId == R.id.listobject) {
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (snackbar == null)
                 return;
-            TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+            TextView textView = (TextView) snackbar.getView().findViewById(R.id.snackbar_text);
             textView.setMaxLines(8);
             snackbar.setAction("Dismiss", new View.OnClickListener() {
                 @Override
